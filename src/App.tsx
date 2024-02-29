@@ -10,14 +10,19 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-
+import {useState} from 'react';
 import diceOne from '../src/assets/diceOne.png';
 import diceTwo from '../src/assets/diceTwo.png';
 import diceThree from '../src/assets/diceThree.png';
 import diceFour from '../src/assets/diceFour.png';
 import diceFive from '../src/assets/diceFive.png';
 import diceSix from '../src/assets/diceSix.png';
-import {PropsWithChildren, useState} from 'react';
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
+
+const options = {
+  enableVibrateFallback: true,
+  ignoreAndroidSystemSettings: false,
+};
 
 export default function App() {
   const [diceImage, setDiceImage] = useState<ImageSourcePropType>(diceOne);
@@ -49,6 +54,8 @@ export default function App() {
         setDiceImage(diceOne);
         break;
     }
+
+    ReactNativeHapticFeedback.trigger('impactHeavy', options);
   };
 
   return (
